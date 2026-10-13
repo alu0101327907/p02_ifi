@@ -168,3 +168,52 @@ public class LanzarObjeto : MonoBehaviour
 
 En la escena debe haber 3 objetos que tengan Collider pero no Rigidbody. Un cubo, una esfera y un cilindro que deben estar alineados. Marcar el cilindro como objetivo a alcanzar por la esfera. El cubo debe hacer de obstáculo entre ambos. Implementar un script que haga que la esfera se dirija al cilindro, cuando la esfera alcance el cubo, este debe cambiar su material.
 
+<img width="450" height="873" alt="image" src="https://github.com/user-attachments/assets/187e740e-cc73-4266-9bcc-9940f1731843" />
+
+
+```bash
+
+using UnityEngine;
+
+public class EsferaPersigue : MonoBehaviour
+{
+    public Transform objetivo;
+    public Collider cubo;
+    public Material materialNuevo;
+    public float velocidad = 2f;
+
+    private bool haLlegado = false;
+    private Renderer rendererCubo;
+
+    void Start()
+    {
+        rendererCubo = cubo.GetComponent<Renderer>();
+    }
+
+    void Update()
+    {
+        if (haLlegado)
+            return;
+
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            objetivo.position,
+            velocidad * Time.deltaTime
+        );
+
+        Collider esfera = GetComponent<Collider>();
+
+        if (esfera.bounds.Intersects(cubo.bounds))
+        {
+            rendererCubo.material = materialNuevo;
+            haLlegado = true;
+
+            Debug.Log("¡La esfera ha alcanzado el cubo!");
+        }
+    }
+}
+```
+
+<img width="1080" height="500" alt="ej6" src="https://github.com/user-attachments/assets/38a49279-cd96-4010-ab2a-88c1e4317d63" />
+
+
