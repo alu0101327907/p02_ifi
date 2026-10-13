@@ -113,5 +113,58 @@ public class Jugador : MonoBehaviour
 
 Crea tres tipos de objetos en capas distintas: jugador, enemigos, recolectables. Configura la Layer Collision Matrix (Project Settings > Physics). Haz que los enemigos solo colisionen con el jugador, y que los recolectables solo sean detectados por triggers.
 
+<img width="343" height="439" alt="image" src="https://github.com/user-attachments/assets/cf744c66-691c-4d1a-8020-047586199c9f" />
 
+```bash
+using UnityEngine;
+
+public class Recolectable : MonoBehaviour
+{
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("¡He detectado a: " + other.name);
+    }
+}
+```
+
+### Ejercicio 5
+
+Crea una escena con distintos materiales físicos (resbaladizo, rugoso, rebote alto). Aplica distintos Physic Materials a objetos. Lanza los objetos con AddForce() al pulsar la tecla X y observa cómo cambian las reacciones.
+
+```bash
+using UnityEngine;
+
+public class LanzarObjeto : MonoBehaviour
+{
+    public float fuerza = 5f;
+
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            rb.AddForce(Vector3.back * fuerza
+                + Vector3.up * fuerza, ForceMode.Impulse);
+        }
+    }
+}
+```
+
+<img width="221" height="197" alt="image" src="https://github.com/user-attachments/assets/8efb8bc8-3d63-46b8-be6f-467870685354" />
+
+<img width="226" height="180" alt="image" src="https://github.com/user-attachments/assets/9e19a25e-d6f9-4c45-8f63-5d59b0a16cea" />
+
+<img width="223" height="190" alt="image" src="https://github.com/user-attachments/assets/6dadfa8f-3e2d-4263-9a33-730378806f99" />
+
+<img width="1080" height="500" alt="ej5" src="https://github.com/user-attachments/assets/a0315ea1-6abd-4aaf-8dff-d5fd216924f3" />
+
+### Ejercicio 6
+
+En la escena debe haber 3 objetos que tengan Collider pero no Rigidbody. Un cubo, una esfera y un cilindro que deben estar alineados. Marcar el cilindro como objetivo a alcanzar por la esfera. El cubo debe hacer de obstáculo entre ambos. Implementar un script que haga que la esfera se dirija al cilindro, cuando la esfera alcance el cubo, este debe cambiar su material.
 
