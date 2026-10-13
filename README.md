@@ -76,6 +76,37 @@ public class ZonaColor : MonoBehaviour
 }
 ```
 
+```bash
+using UnityEngine;
+
+public class ZonaDaño : MonoBehaviour
+{
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Jugador jugador = other.GetComponent<Jugador>();
+
+            if (jugador != null)
+            {
+                jugador.salud -= 10;
+
+                Debug.Log("Salud actual: " + jugador.salud);
+            }
+        }
+    }
+}
+```
+
+```bash
+using UnityEngine;
+
+public class Jugador : MonoBehaviour
+{
+    public int salud = 100;
+}
+```
+
 <img width="1461" height="808" alt="ej3" src="https://github.com/user-attachments/assets/2df872a1-839d-4f15-9a1c-972f912dc075" />
 
 ### Ejercicio 4
