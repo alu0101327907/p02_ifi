@@ -48,3 +48,39 @@ public class Colision : MonoBehaviour
 ```
 
 <img width="1454" height="675" alt="ej2" src="https://github.com/user-attachments/assets/7dd01bb7-fd60-4606-8646-c0a817446bf0" />
+
+### Ejercicio 3
+
+Crea una zona (por ejemplo, un cubo grande con Is Trigger = true). Al entrar, cambia el color del personaje o activa un efecto que cambie la luz. Al salir, revierte el cambio. Añade otra zona que aumente una variable daño.
+
+```bash
+using UnityEngine;
+
+public class ZonaColor : MonoBehaviour
+{
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Renderer>().material.color = Color.green;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Renderer>().material.color = Color.white;
+        }
+    }
+}
+```
+
+<img width="1461" height="808" alt="ej3" src="https://github.com/user-attachments/assets/2df872a1-839d-4f15-9a1c-972f912dc075" />
+
+### Ejercicio 4
+
+Crea tres tipos de objetos en capas distintas: jugador, enemigos, recolectables. Configura la Layer Collision Matrix (Project Settings > Physics). Haz que los enemigos solo colisionen con el jugador, y que los recolectables solo sean detectados por triggers.
+
+
+
